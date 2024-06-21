@@ -1,0 +1,46 @@
+body{
+   
+    background-color: rgb(45, 45, 148);
+
+}
+
+footer {
+    position: relative;
+}
+
+#footer-ball {
+    width: 50px;
+    cursor: pointer;
+}
+
+#footer-ball:hover {
+    animation: bounce 0.5s;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #navbarNav {
+        text-align: center;
+    }
+}
+.q
+{
+    text-align: left;
+}
+.qqq
+{
+    text-align: center;
+}
+.qq
+{
+    text-align: right;
+}
