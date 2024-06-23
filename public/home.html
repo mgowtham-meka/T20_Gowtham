@@ -9,16 +9,36 @@
   <link rel="stylesheet" href="styles.css">
   <style>
     body {
-      background: linear-gradient(to right, #64c920, #be1010);
-      color: #333;
+      background-image: url('https://img.cricketnmore.com/uploads/2021/12/would-love-to-see-a-day-night-test-at-melbourne-cricket-ground.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
     }
-   
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .q {
+      position: relative;
+      z-index: 1;
+    }
+
+    table {
+      background-color: rgba(255, 255, 255, 0.8);
+    }
   </style>
 </head>
 <body>
 <div class="q">
     <section id="home" class="container mt-5 pt-5">
-        <h1 class="text-center">T20 World Cup Schedule</h1>
+        <h1 class="text-center" style="color: rgb(213, 236, 12);"> T20 World Cup Schedule</h1>
         <table class="table table-striped mt-4">
             <thead>
                 <tr>
@@ -28,43 +48,43 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="table-success">
-                    <td>India vs Usa</td>
+                <tr class="table">
+                    <td>India vs USA</td>
                     <td>2024-10-23</td>
-                    <td>Venue 1</td>
+                    <td>Stadium 1</td>
                 </tr>
                 <tr class="table-success">
-                    <td>Usa vs Pak</td>
+                    <td>USA vs Pakistan</td>
                     <td>2024-10-24</td>
-                    <td>Venue 2</td>
+                    <td>Stadium 2</td>
                 </tr>
-                <tr class="table-danger">
-                    <td>Pak vs Ind</td>
+                <tr class="table">
+                    <td>Pakistan vs India</td>
                     <td>2024-10-23</td>
-                    <td>Venue 1</td>
+                    <td>Stadium 1</td>
                 </tr>
                 <tr class="table-success">
-                    <td>aus vs eng</td>
+                    <td>Australia vs England</td>
                     <td>2024-10-24</td>
-                    <td>Venue 2</td>
+                    <td>Stadium 2</td>
                 </tr>
                 <tr class="table-warning">
-                    <td>eng vs aus</td>
+                    <td>England vs Australia</td>
                     <td>2024-10-23</td>
-                    <td>Venue 1</td>
-                </tr> 
-                <tr class="table-success">
-                    <td>sa vs wi</td>
-                    <td>2024-10-24</td>
-                    <td>Venue 2</td>
+                    <td>Stadium 1</td>
                 </tr>
                 <tr class="table-success">
-                    <td>afg vs wi</td>
+                    <td>South Africa vs West Indies
+                        <td>2024-10-23</td>
+                        <td>Stadium 1</td>
+                    </tr>    
+                <tr class="table">
+                    <td>England vs Australia</td>
                     <td>2024-10-23</td>
                     <td>Venue 1</td>
                 </tr>
                 <tr class="table-success">
-                    <td>ind vs aus</td>
+                    <td>India vs Australia</td>
                     <td>2024-10-24</td>
                     <td>Venue 2</td>
                 </tr>
