@@ -27,14 +27,18 @@
     .table th, .table td {
       vertical-align: middle;
     }
-    
+    .color
+    {
+        color: darkblue;
+    }
+   
   </style>
 </head>
 <body>
   <div class="container mt-5">
     <div class="row">
       <div class="col-md-6 mb-4">
-        <h1 style="color: rgb(51, 8, 240);">Json Data What I'm Getting 📊</h1>
+        <h1 style="color: rgb(217, 240, 8);">Json Data What I'm Getting 📊</h1>
         <div class="mb-4">
           <input type="text" id="searchInput" class="form-control" placeholder=" 🔍 Search if you need  Title ">
         </div>
@@ -47,13 +51,13 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Title</th>
-          <th scope="col">Body</th>
+          <th scope="col" class="color" >Name</th>
+          <th scope="col" class="color">Title</th>
+          <th scope="col" class="color">Body</th>
         </tr>
       </thead>
       <tbody id="dataBody">
-        <!-- Data will be inserted here -->
+        
       </tbody>
     </table>
   </div>

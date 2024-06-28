@@ -8,6 +8,9 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// this code is   for postt
+
+
 
 class Post {
   static names = {
@@ -36,13 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const updateDataButton = document.getElementById('updateData');
   const searchInput = document.getElementById('searchInput');
 
-  let postsData = []; // Array to store all posts data
+  let postsData = []; 
 
   const fetchData = async () => {
     try {
       const response = await fetch('https://jsonplaceholder.typicode.com/posts');
       const data = await response.json();
-      console.log(data); // Log the API response
+      console.log(data); 
       postsData = data.map(post => new Post(post.userId, post.title, post.body));
       renderPosts(postsData);
     } catch (error) {
@@ -76,13 +79,30 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+  // this codde is  form 
+
+  
+
 document.addEventListener('DOMContentLoaded', function() {
+  const teamSelect = document.getElementById('team');
+  const notificationsDiv = document.querySelector('.notifications');
+  const whatsappCheckbox = document.getElementById('whatsapp');
+  const t20YesRadio = document.getElementById('t20yes');
+  const t20NoRadio = document.getElementById('t20no');
+
+  teamSelect.addEventListener('change', function() {
+      if (teamSelect.value) {
+          notificationsDiv.classList.remove('hidden');
+      } else {
+          notificationsDiv.classList.add('hidden');
+      }
+  });
+
   const form = document.querySelector('form');
   const nameInput = document.getElementById('name');
   const emailInput = document.getElementById('email');
   const phoneInput = document.getElementById('phone');
-  const teamSelect = document.getElementById('team');
-  const notificationsDiv = document.querySelector('.notifications');
   const errorMessage = document.createElement('div');
   const resetButton = document.createElement('button');
   const submitButton = form.querySelector('button[type="submit"]');
@@ -90,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const deleteButton = document.createElement('button');
 
   errorMessage.classList.add('alert', 'alert-danger', 'hidden');
-  errorMessage.innerText = 'Please check your data once again ';
+  errorMessage.innerText = 'Please check your data';
   form.prepend(errorMessage);
 
   resetButton.type = 'button';
@@ -113,8 +133,8 @@ document.addEventListener('DOMContentLoaded', function() {
           email: emailInput.value,
           phone: phoneInput.value,
           team: teamSelect.value,
-          notifications: notificationsDiv.querySelector('input[type="checkbox"]').checked,
-          t20like: form.querySelector('input[name="t20like"]:checked') ? form.querySelector('input[name="t20like"]:checked').value : ''
+          notifications: whatsappCheckbox.checked,
+          t20like: t20YesRadio.checked ? 'yes' : (t20NoRadio.checked ? 'no' : '')
       };
       localStorage.setItem('formData', JSON.stringify(formData));
   }
@@ -126,8 +146,8 @@ document.addEventListener('DOMContentLoaded', function() {
           '<strong>Email:</strong> ' + emailInput.value + '<br>' +
           '<strong>Phone:</strong> ' + phoneInput.value + '<br>' +
           '<strong>Team:</strong> ' + teamSelect.value + '<br>' +
-          '<strong>Receive Notifications:</strong> ' + (notificationsDiv.querySelector('input[type="checkbox"]').checked ? 'Yes' : 'No') + '<br>' +
-          '<strong>Like T20:</strong> ' + (form.querySelector('input[name="t20like"]:checked') ? form.querySelector('input[name="t20like"]:checked').value : '') + '<br>';
+          '<strong>Receive Notifications:</strong> ' + (whatsappCheckbox.checked ? 'Yes' : 'No') + '<br>' +
+          '<strong>Like T20:</strong> ' + (t20YesRadio.checked ? 'Yes' : (t20NoRadio.checked ? 'No' : '')) + '<br>';
       deleteButton.classList.remove('hidden');
   }
 
@@ -143,14 +163,14 @@ document.addEventListener('DOMContentLoaded', function() {
           phoneInput.value = storedData.phone;
           teamSelect.value = storedData.team;
           if (storedData.notifications) {
-              notificationsDiv.querySelector('input[type="checkbox"]').checked = true;
+              whatsappCheckbox.checked = true;
           } else {
-              notificationsDiv.querySelector('input[type="checkbox"]').checked = false;
+              whatsappCheckbox.checked = false;
           }
           if (storedData.t20like === 'yes') {
-              form.querySelector('#t20yes').checked = true;
+              t20YesRadio.checked = true;
           } else if (storedData.t20like === 'no') {
-              form.querySelector('#t20no').checked = true;
+              t20NoRadio.checked = true;
           }
           displayThankYouMessage();
       }
