@@ -9,7 +9,7 @@
    
    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script src="home.js"></script>
+  <script src="home.html"></script>
   <style>
       :root{ --icc-theme-tertiaryColor: #0d1635; --icc-theme-primaryColor: #00175F; --icc-theme-darkBackgroundColor: #00175F; --icc-theme-darkHighlightColor: #16D9F9; --icc-theme-darkTitlesColor: #FFFFFF; --icc-theme-darkLabelsColor: #FFFFFF; --icc-theme-lightBackgroundColor: #FFFFFF; --icc-theme-lightTitlesColor: #00175F; --icc-theme-lightLabelsColor: #000000; --icc-theme-lightHighlightColor: #16D9F9; }
 
@@ -18,7 +18,7 @@
   <body>
         
 
-  
+  <button id="b1">tap to change mode</button>
 
 
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #08051d;">
@@ -40,11 +40,17 @@
               <li class="nav-item dropdown">
                 <a class="nav-link" href="contact.html" style="color: #5233ff;">Contact</a>
               </li>
+
+              <li class="nav-item ">
+                <a class="nav-link" href="Posts.html" style="color: #5233ff;">Posts</a>
+              </li>
+
+
             </ul>
-            <form class="d-flex" role="search">
+            <!-- <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
               <button class="btn btn-outline-success" type="submit" style="color: #3633ff;">Search</button>
-            </form>
+            </form> -->
           </div>
         </div>
       </nav>
@@ -136,7 +142,7 @@
               <div class="card-body">
                   <h5 class="card-title" style="color: dimgrey;">He saw , He Nailed</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="https://www.google.com/search?channel=fs&client=ubuntu-sn&q=england+vs+india" class="btn btn-primary">Click FOr more</a>
+                  <a href="https://www.google.com/search?channel=fs&client=ubuntu-sn&q=england+vs+india" class="btn btn-primary">Click For more</a>
               </div>
           </div>
       </div>
@@ -147,7 +153,7 @@
               <div class="card-body">
                   <h5 class="card-title" style="color: dimgrey;">The Blood tells It self</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="https://m.cricbuzz.com/live-cricket-scores/78089/nz-vs-aus-1st-t20i-australia-tour-of-new-zealand-2024" class="btn btn-primary">Click FOr more</a>
+                  <a href="https://m.cricbuzz.com/live-cricket-scores/78089/nz-vs-aus-1st-t20i-australia-tour-of-new-zealand-2024" class="btn btn-primary">Click For more</a>
               </div>
           </div>
       </div>
@@ -158,7 +164,7 @@
               <div class="card-body">
                   <h5 class="card-title" style="color: dimgrey;">GAME CHANGER </h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="https://www.google.com/search?q=aus+vs+india&client=ubuntu-sn&sca_esv=4bc491f601bc1e05&channel=fs&ei=l096ZoTbEveZ4-EPw_quwAM&ved=0ahUKEwjEgtqH_fWGAxX3zDgGHUO9CzgQ4dUDCA8&uact=5&oq=aus+vs+india&gs_lp=Egxnd3Mtd2l6LXNlcnAiDGF1cyB2cyBpbmRpYTIGEAAYBxgeMgYQABgHGB4yBhAAGAcYHjIIEAAYBxgKGB4yBhAAGAcYHjIGEAAYBxgeMgYQABgHGB4yBhAAGAcYHjIGEAAYBxgeMgYQABgHGB5I-hFQxQ1Y6hBwAngBkAEAmAGYAaABrgKqAQMwLjK4AQPIAQD4AQGYAgSgAtkCwgIKEAAYsAMY1gQYR8ICDRAAGIAEGLADGEMYigXCAhMQLhiABBiwAxhDGMgDGIoF2AEBwgIcEC4YgAQYsAMYQxjHARjIAxiKBRiOBRivAdgBAZgDAIgGAZAGFLoGBggBEAEYCJIHAzIuMqAH1w4&sclient=gws-wiz-serp#sie=m;/g/11lctdvt3z;5;/m/026y268;dt;fp;1;;;" class="btn btn-primary">Click FOr more</a>
+                  <a href="https://www.google.com/search?q=aus+vs+india&client=ubuntu-sn&sca_esv=4bc491f601bc1e05&channel=fs&ei=l096ZoTbEveZ4-EPw_quwAM&ved=0ahUKEwjEgtqH_fWGAxX3zDgGHUO9CzgQ4dUDCA8&uact=5&oq=aus+vs+india&gs_lp=Egxnd3Mtd2l6LXNlcnAiDGF1cyB2cyBpbmRpYTIGEAAYBxgeMgYQABgHGB4yBhAAGAcYHjIIEAAYBxgKGB4yBhAAGAcYHjIGEAAYBxgeMgYQABgHGB4yBhAAGAcYHjIGEAAYBxgeMgYQABgHGB5I-hFQxQ1Y6hBwAngBkAEAmAGYAaABrgKqAQMwLjK4AQPIAQD4AQGYAgSgAtkCwgIKEAAYsAMY1gQYR8ICDRAAGIAEGLADGEMYigXCAhMQLhiABBiwAxhDGMgDGIoF2AEBwgIcEC4YgAQYsAMYQxjHARjIAxiKBRiOBRivAdgBAZgDAIgGAZAGFLoGBggBEAEYCJIHAzIuMqAH1w4&sclient=gws-wiz-serp#sie=m;/g/11lctdvt3z;5;/m/026y268;dt;fp;1;;;" class="btn btn-primary">Click For more</a>
               </div>
           </div>
       </div>
