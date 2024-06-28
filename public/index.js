@@ -31,34 +31,47 @@ class Post {
     this.body = body;
   }
 }
-
 document.addEventListener('DOMContentLoaded', () => {
   const dataBody = document.getElementById('dataBody');
   const updateDataButton = document.getElementById('updateData');
+  const searchInput = document.getElementById('searchInput');
+
+  let postsData = []; // Array to store all posts data
 
   const fetchData = async () => {
     try {
       const response = await fetch('https://jsonplaceholder.typicode.com/posts');
       const data = await response.json();
-      console.log(data); 
-      // dataBody.innerHTML = '';
-      data.forEach((post, index) => {
-        const postObject = new Post(post.userId, post.title, post.body);
-        const row = `<tr>
-          <td>${postObject.name}</td>
-          <td>${postObject.title}</td>
-          <td>${postObject.body}</td>
-        </tr>`;
-        dataBody.insertAdjacentHTML('beforeend', row);
-      });
+      console.log(data); // Log the API response
+      postsData = data.map(post => new Post(post.userId, post.title, post.body));
+      renderPosts(postsData);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
 
+  const renderPosts = (posts) => {
+    dataBody.innerHTML = '';
+    posts.forEach(post => {
+      const row = `<tr>
+        <td>${post.name}</td>
+        <td>${post.title}</td>
+        <td>${post.body}</td>
+      </tr>`;
+      dataBody.insertAdjacentHTML('beforeend', row);
+    });
+  };
+
+  const handleSearch = () => {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    const filteredPosts = postsData.filter(post => post.title.toLowerCase().includes(searchTerm));
+    renderPosts(filteredPosts);
+  };
+
   updateDataButton.addEventListener('click', fetchData);
+  searchInput.addEventListener('input', handleSearch);
 
-
+ 
   fetchData();
 });
 
@@ -72,40 +85,93 @@ document.addEventListener('DOMContentLoaded', function() {
   const notificationsDiv = document.querySelector('.notifications');
   const errorMessage = document.createElement('div');
   const resetButton = document.createElement('button');
-  
+  const submitButton = form.querySelector('button[type="submit"]');
+  const thankYouMessage = document.createElement('div');
+  const deleteButton = document.createElement('button');
+
   errorMessage.classList.add('alert', 'alert-danger', 'hidden');
-  errorMessage.innerText = 'Please check your data';
+  errorMessage.innerText = 'Please check your data once again ';
   form.prepend(errorMessage);
-  
+
   resetButton.type = 'button';
   resetButton.classList.add('btn', 'btn-secondary', 'w-100', 'mt-3');
   resetButton.innerText = 'Reset';
   form.appendChild(resetButton);
 
-  teamSelect.addEventListener('change', function() {
-      if (teamSelect.value) {
-          notificationsDiv.classList.remove('hidden');
-      } else {
-          notificationsDiv.classList.add('hidden');
+  thankYouMessage.classList.add('alert', 'alert-success', 'mt-3', 'hidden');
+  thankYouMessage.innerText = 'Thank you for your submission';
+  form.parentNode.insertBefore(thankYouMessage, form.nextSibling);
+
+  deleteButton.type = 'button';
+  deleteButton.classList.add('btn', 'btn-danger', 'w-100', 'mt-3', 'hidden');
+  deleteButton.innerText = 'Delete Data';
+  form.parentNode.insertBefore(deleteButton, thankYouMessage.nextSibling);
+
+  function saveFormData() {
+      const formData = {
+          name: nameInput.value,
+          email: emailInput.value,
+          phone: phoneInput.value,
+          team: teamSelect.value,
+          notifications: notificationsDiv.querySelector('input[type="checkbox"]').checked,
+          t20like: form.querySelector('input[name="t20like"]:checked') ? form.querySelector('input[name="t20like"]:checked').value : ''
+      };
+      localStorage.setItem('formData', JSON.stringify(formData));
+  }
+
+  function displayThankYouMessage() {
+      thankYouMessage.classList.remove('hidden');
+      thankYouMessage.innerHTML = '<strong>Thank you for your submission!</strong><br><br>' +
+          '<strong>Name:</strong> ' + nameInput.value + '<br>' +
+          '<strong>Email:</strong> ' + emailInput.value + '<br>' +
+          '<strong>Phone:</strong> ' + phoneInput.value + '<br>' +
+          '<strong>Team:</strong> ' + teamSelect.value + '<br>' +
+          '<strong>Receive Notifications:</strong> ' + (notificationsDiv.querySelector('input[type="checkbox"]').checked ? 'Yes' : 'No') + '<br>' +
+          '<strong>Like T20:</strong> ' + (form.querySelector('input[name="t20like"]:checked') ? form.querySelector('input[name="t20like"]:checked').value : '') + '<br>';
+      deleteButton.classList.remove('hidden');
+  }
+
+  function clearFormData() {
+      localStorage.removeItem('formData');
+  }
+
+  function loadStoredData() {
+      const storedData = JSON.parse(localStorage.getItem('formData'));
+      if (storedData) {
+          nameInput.value = storedData.name;
+          emailInput.value = storedData.email;
+          phoneInput.value = storedData.phone;
+          teamSelect.value = storedData.team;
+          if (storedData.notifications) {
+              notificationsDiv.querySelector('input[type="checkbox"]').checked = true;
+          } else {
+              notificationsDiv.querySelector('input[type="checkbox"]').checked = false;
+          }
+          if (storedData.t20like === 'yes') {
+              form.querySelector('#t20yes').checked = true;
+          } else if (storedData.t20like === 'no') {
+              form.querySelector('#t20no').checked = true;
+          }
+          displayThankYouMessage();
       }
-  });
+  }
 
   form.addEventListener('submit', function(event) {
       event.preventDefault();
       let valid = true;
-      
+
       if (!/^[a-zA-Z\s]+$/.test(nameInput.value)) {
           valid = false;
       }
-      
+
       if (!/^\S+@\S+\.\S+$/.test(emailInput.value)) {
           valid = false;
       }
-      
+
       if (!/^\d+$/.test(phoneInput.value)) {
           valid = false;
       }
-      
+
       if (!teamSelect.value) {
           valid = false;
       }
@@ -114,9 +180,9 @@ document.addEventListener('DOMContentLoaded', function() {
           errorMessage.classList.remove('hidden');
       } else {
           errorMessage.classList.add('hidden');
-          alert('Form submitted successfully!');
-          form.reset();
-          notificationsDiv.classList.add('hidden');
+          saveFormData();
+          form.classList.add('hidden');
+          displayThankYouMessage();
       }
   });
 
@@ -125,4 +191,13 @@ document.addEventListener('DOMContentLoaded', function() {
       notificationsDiv.classList.add('hidden');
       errorMessage.classList.add('hidden');
   });
+
+  deleteButton.addEventListener('click', function() {
+      clearFormData();
+      thankYouMessage.classList.add('hidden');
+      deleteButton.classList.add('hidden');
+      form.classList.remove('hidden');
+  });
+
+  loadStoredData();
 });

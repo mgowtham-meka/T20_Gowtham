@@ -95,3 +95,9 @@ input {
     color: red;
     font-size: 12px;
 }
+
+#searchInput
+{
+    text-align: center;
+}
+
