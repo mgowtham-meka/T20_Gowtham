@@ -43,6 +43,7 @@ module Cricket
         stats = {}
         @players.each do |player|
           stats[player.name] = player.stats
+          
         end
         stats
       end

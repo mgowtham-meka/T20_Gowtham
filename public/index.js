@@ -48,6 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(data); 
       postsData = data.map(post => new Post(post.userId, post.title, post.body));
       renderPosts(postsData);
+      // let ans =new XMLHttpRequest()
+      // ans.open("GET","https://jsonplaceholder.typicode.com/posts",true)
+      // ans.getResponseHeader("content-type","applcation/json")
+      // ans.onload=
+      function()
+      {
+         const obj =JSON.parse(this.responseText) 
+         console.log(obj)
+      }
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -82,8 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // this codde is  form 
 
-  
-
 document.addEventListener('DOMContentLoaded', function() {
   const teamSelect = document.getElementById('team');
   const notificationsDiv = document.querySelector('.notifications');
@@ -105,11 +112,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const phoneInput = document.getElementById('phone');
   const errorMessage = document.createElement('div');
   const resetButton = document.createElement('button');
-  const submitButton = form.querySelector('button[type="submit"]');
+  const submitButton = form.querySelector('button');
   const thankYouMessage = document.createElement('div');
   const deleteButton = document.createElement('button');
 
-  errorMessage.classList.add('alert', 'alert-danger', 'hidden');
+  errorMessage.classList.add('alert', 'alert-danger', 'hidden') ;
   errorMessage.innerText = 'Please check your data';
   form.prepend(errorMessage);
 
