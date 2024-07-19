@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_12_081435) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_17_094006) do
   create_table "customers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.integer "age"
@@ -26,6 +26,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_12_081435) do
     t.integer "team2_id"
     t.integer "score_team1"
     t.integer "score_team2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mentors", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -46,6 +53,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_12_081435) do
     t.bigint "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "role", null: false
+    t.boolean "is_captain", default: false, null: false
+    t.boolean "is_active", default: true, null: false
+    t.text "description"
     t.index ["team_id"], name: "index_players_on_team_id"
   end
 
@@ -54,6 +65,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_12_081435) do
     t.string "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "founded", null: false
+    t.text "description", null: false
   end
 
   add_foreign_key "orders", "customers"

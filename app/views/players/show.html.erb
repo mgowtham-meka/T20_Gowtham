@@ -1,0 +1,20 @@
+<div class="container">
+  <h1 class="display-4">Player Details</h1>
+  <dl class="row">
+    <dt class="col-sm-3">Name:</dt>
+    <dd class="col-sm-9"><%= @player.name %></dd>
+
+    <dt class="col-sm-3">Age:</dt>
+    <dd class="col-sm-9"><%= @player.age %></dd>
+
+    <dt class="col-sm-3">Position:</dt>
+    <dd class="col-sm-9"><%= @player.position %></dd>
+
+    <dt class="col-sm-3">Team:</dt>
+    <dd class="col-sm-9"><%= @player.team.name %></dd>
+  </dl>
+  <p class="text-end">
+    <%= link_to 'Edit', edit_player_path(@player), class: "btn btn-primary" %> |
+    <%= link_to 'Back', players_path, class: "btn btn-secondary" %>
+  </p>
+</div>

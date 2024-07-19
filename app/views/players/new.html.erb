@@ -1,0 +1,40 @@
+<h1><%= action_name.capitalize %> Player</h1>
+
+<%= form_with(model: @player, local: true) do |form| %>
+  <% if @player.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h4><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h4>
+      <ul>
+        <% @player.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :age, class: "form-label" %>
+    <%= form.number_field :age, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :position, class: "form-label" %>
+    <%= form.text_field :position, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :team_id, class: "form-label" %>
+    <%= form.collection_select :team_id, Team.all, :id, :name, prompt: 'Select a team', class: "form-select" %>
+  </div>
+
+  <div class="d-grid gap-2">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', players_path, class: "btn btn-secondary" %>
