@@ -1,7 +1,7 @@
 class Team < ApplicationRecord
     has_many :players
     
-    accepts_nested_attributes_for :players, allow_destroy: true
+    # accepts_nested_attributes_for :players, allow_destroy: true
 
     
     validates :name, presence: true

@@ -1,20 +1,28 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: %i[show edit update destroy]
+  before_action :set_team, only: [:show, :edit, :update, :destroy]
 
+  # GET /teams
   def index
     @teams = Team.all
   end
 
+  # GET /teams/1
   def show
   end
 
+  # GET /teams/new
   def new
     @team = Team.new
-    @team.players.build  
   end
 
+  # GET /teams/1/edit
+  def edit
+  end
+
+  # POST /teams
   def create
     @team = Team.new(team_params)
+
     if @team.save
       redirect_to @team, notice: 'Team was successfully created.'
     else
@@ -22,10 +30,7 @@ class TeamsController < ApplicationController
     end
   end
 
-  def edit
-    @team.players.build if @team.players.empty?  
-  end
-
+  # PATCH/PUT /teams/1
   def update
     if @team.update(team_params)
       redirect_to @team, notice: 'Team was successfully updated.'
@@ -34,18 +39,20 @@ class TeamsController < ApplicationController
     end
   end
 
+  # DELETE /teams/1
   def destroy
     @team.destroy
     redirect_to teams_url, notice: 'Team was successfully destroyed.'
   end
 
   private
+   
+    def set_team
+      @team = Team.find(params[:id])
+    end
 
-  def set_team
-    @team = Team.find(params[:id])
-  end
-
-  def team_params
-    params.require(:team).permit(:name, :country, players_attributes: [:id, :name, :age, :position, :role ,:_destroy])
-  end
+  
+    def team_params
+      params.require(:team).permit(:name, :country, :founded, :description)
+    end
 end

@@ -1,20 +1,37 @@
-<div class="container">
-  <h1 class="display-4">Player Details</h1>
-  <dl class="row">
-    <dt class="col-sm-3">Name:</dt>
-    <dd class="col-sm-9"><%= @player.name %></dd>
+<p>
+  <strong>Name:</strong>
+  <%= @player.name %>
+</p>
 
-    <dt class="col-sm-3">Age:</dt>
-    <dd class="col-sm-9"><%= @player.age %></dd>
+<p>
+  <strong>Age:</strong>
+  <%= @player.age %>
+</p>
 
-    <dt class="col-sm-3">Position:</dt>
-    <dd class="col-sm-9"><%= @player.position %></dd>
+<p>
+  <strong>Role:</strong>
+  <%= @player.role %>
+</p>
 
-    <dt class="col-sm-3">Team:</dt>
-    <dd class="col-sm-9"><%= @player.team.name %></dd>
-  </dl>
-  <p class="text-end">
-    <%= link_to 'Edit', edit_player_path(@player), class: "btn btn-primary" %> |
-    <%= link_to 'Back', players_path, class: "btn btn-secondary" %>
-  </p>
-</div>
+<p>
+  <strong>Position:</strong>
+  <%= @player.position %>
+</p>
+
+<p>
+  <strong>Team:</strong>
+  <%= @player.team.name %>
+</p>
+
+<p>
+  <strong>Is Captain:</strong>
+  <%= @player.is_captain %>
+</p>
+
+<p>
+  <strong>Is Active:</strong>
+  <%= @player.is_active %>
+</p>
+
+<%= link_to 'Edit', edit_player_path(@player) %> |
+<%= link_to 'Back', players_path %>
