@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePlayers < ActiveRecord::Migration[7.1]
   def change
     create_table :players do |t|
@@ -5,11 +7,6 @@ class CreatePlayers < ActiveRecord::Migration[7.1]
       t.integer :age
       t.string :position
       t.references :team, null: false, foreign_key: true
-
-
-      
     end
   end
 end
-
-

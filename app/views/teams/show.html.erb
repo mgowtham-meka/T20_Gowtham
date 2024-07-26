@@ -1,22 +1,16 @@
+<h1>Team Details</h1>
+
 <p>
   <strong>Name:</strong>
   <%= @team.name %>
 </p>
 
-<p>
-  <strong>Country:</strong>
-  <%= @team.country %>
-</p>
-
-<p>
-  <strong>Founded:</strong>
-  <%= @team.founded %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @team.description %>
-</p>
+<h3>Players</h3>
+<ul>
+  <% @team.players.each do |player| %>
+    <li><%= player.name %></li>
+  <% end %>
+</ul>
 
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>

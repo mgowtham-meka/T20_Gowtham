@@ -1,0 +1,46 @@
+<%= form_with(model: team, local: true) do |form| %>
+  <% if team.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
+      <ul>
+        <% team.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <h3>Players</h3>
+
+  <div id="players">
+    <% team.players.each_with_index do |player, index| %>
+      <div class="field">
+        <%= form.fields_for :players, player do |player_form| %>
+          <%= player_form.label :name, "Player Name" %>
+          <%= player_form.text_field :name %>
+          <%= player_form.hidden_field :_destroy %>
+          <% if team.players.length > 1 %>
+            <%= link_to "Remove Player", '#', class: "remove_fields", data: { index: index } %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+    <% if team.players.empty? %>
+      <%= form.fields_for :players do |player_form| %>
+        <div class="field">
+          <%= player_form.label :name, "Player Name" %>
+          <%= player_form.text_field :name %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

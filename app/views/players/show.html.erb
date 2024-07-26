@@ -1,36 +1,13 @@
+<h1>Player Details</h1>
+
 <p>
   <strong>Name:</strong>
   <%= @player.name %>
 </p>
 
 <p>
-  <strong>Age:</strong>
-  <%= @player.age %>
-</p>
-
-<p>
-  <strong>Role:</strong>
-  <%= @player.role %>
-</p>
-
-<p>
-  <strong>Position:</strong>
-  <%= @player.position %>
-</p>
-
-<p>
   <strong>Team:</strong>
-  <%= @player.team.name %>
-</p>
-
-<p>
-  <strong>Is Captain:</strong>
-  <%= @player.is_captain %>
-</p>
-
-<p>
-  <strong>Is Active:</strong>
-  <%= @player.is_active %>
+  <%= @player.team.name if @player.team %>
 </p>
 
 <%= link_to 'Edit', edit_player_path(@player) %> |
